@@ -1,0 +1,3123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e8e6df">
+<meta name="description" content="Portfolio of Joaquin Rafael Rucio">
+<title>Joax.exe | Joaquin Rafael Rucio</title>
+
+<style>
+/* ================================
+   WINDOWS 98 PORTFOLIO THEME
+================================ */
+
+:root {
+  --bg: #e8e6df;
+  --paper: #f7f6f2;
+  --silver: #dad8d1;
+  --navy: #203978;
+  --navy-light: #6d91ba;
+  --ink: #202630;
+  --muted: #595b60;
+  --line: #bfbbb2;
+  --mono: "Courier New", Courier, monospace;
+  --sans: "Segoe UI", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
+}
+
+body {
+  margin: 0;
+  padding-bottom: 46px;
+  color: var(--ink);
+  font: 15px/1.7 var(--sans);
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(#c9c5bc .65px, transparent .7px);
+  background-size: 22px 22px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font: inherit;
+}
+
+.container {
+  width: min(1120px, calc(100% - 42px));
+  margin: auto;
+}
+
+:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: fixed;
+  top: -60px;
+  left: 10px;
+  padding: 8px 12px;
+  background: white;
+  z-index: 1100;
+}
+
+.skip-link:focus {
+  top: 10px;
+}
+
+/* ================================
+   LOADING SCREEN
+================================ */
+
+.boot-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  background: #202630;
+  color: #f7f5ed;
+  transition: opacity .4s, visibility .4s;
+}
+
+.boot-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.boot-box {
+  width: min(420px, calc(100% - 40px));
+  font-family: var(--mono);
+}
+
+.boot-box h2 {
+  margin: 8px 0;
+  font-size: clamp(26px, 6vw, 43px);
+}
+
+.boot-symbol {
+  font-size: 42px;
+  color: #c9ad9a;
+}
+
+.boot-box p {
+  font-size: 12px;
+}
+
+.boot-progress {
+  height: 19px;
+  padding: 3px;
+  border: 1px solid white;
+}
+
+.boot-progress span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: #9db0ce;
+  transition: width .18s steps(5);
+}
+
+.boot-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font: 11px var(--mono);
+}
+
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 1000;
+}
+
+.reading-progress span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--navy);
+}
+
+/* ================================
+   NAVIGATION
+================================ */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  background: #dad8d1;
+  border-top: 2px solid white;
+  border-bottom: 2px solid #787873;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  min-height: 69px;
+}
+
+.site-status {
+  flex: 1;
+  font: bold 12px var(--mono);
+  white-space: nowrap;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: 9px;
+  background: var(--navy);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+.nav-links a {
+  padding: 9px 10px;
+  font: bold 12px var(--mono);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  background: var(--navy);
+  color: white;
+}
+
+.brand {
+  flex: 1;
+  text-align: right;
+  font: bold 19px var(--mono);
+  color: var(--navy);
+}
+
+.menu-toggle {
+  display: none;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 2px;
+  width: 19px;
+  margin: 4px 0;
+  background: var(--ink);
+}
+
+/* ================================
+   WINDOWS 98 COMPONENTS
+================================ */
+
+.win-button,
+.menu-toggle,
+.carousel-arrow,
+.start-button,
+.task-app {
+  border: 2px solid;
+  border-color: white #6d6b66 #6d6b66 white;
+  box-shadow: 1px 1px 0 #303030;
+  background: #e0ded7;
+  color: var(--ink);
+  border-radius: 0;
+}
+
+.win-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 43px;
+  padding: 8px 17px;
+  font: bold 12px var(--mono);
+}
+
+.win-button.primary {
+  background: var(--navy);
+  color: white;
+}
+
+.win-button:hover,
+.carousel-arrow:hover:not(:disabled),
+.start-button:hover {
+  filter: brightness(.94);
+}
+
+.window {
+  background: var(--paper);
+  border: 2px solid;
+  border-color: white #777 #777 white;
+  box-shadow:
+    2px 2px 0 #555,
+    5px 6px 0 #00000010;
+  min-width: 0;
+}
+
+.window-bar {
+  min-height: 38px;
+  padding: 7px 11px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  font: bold 12px var(--mono);
+  background: linear-gradient(
+    90deg,
+    #1d3475,
+    #7093b8
+  );
+}
+
+.window-controls {
+  display: flex;
+  gap: 3px;
+}
+
+.window-controls span {
+  width: 20px;
+  height: 19px;
+  display: grid;
+  place-items: center;
+  color: #222;
+  background: #dedcd6;
+  border: 2px solid;
+  border-color: white #777 #777 white;
+  font: bold 12px var(--mono);
+}
+
+.window-menu {
+  display: flex;
+  gap: 20px;
+  padding: 5px 15px;
+  border-bottom: 1px solid #b6b4ac;
+  background: #e1dfd9;
+  font-size: 13px;
+}
+
+.window-status {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 5px;
+  padding: 4px 8px;
+  background: #e5e3dd;
+  color: #575b63;
+  border: 1px solid;
+  border-color: #888 white white #888;
+  font: 11px var(--mono);
+}
+
+/* ================================
+   HOME SECTION
+================================ */
+
+.hero {
+  border-bottom: 1px solid #a9a59e;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 30px;
+  min-height: 665px;
+}
+
+.hero-copy {
+  min-width: 0;
+  padding: 60px 0;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font: 13px var(--mono);
+  letter-spacing: .04em;
+}
+
+.hero-greeting {
+  margin-top: 45px;
+  font: bold 15px var(--mono);
+}
+
+.hero h1 {
+  font-size: clamp(45px, 5.8vw, 79px);
+  line-height: 1.07;
+  letter-spacing: -.065em;
+  margin: 18px 0;
+}
+
+.hero h1 span {
+  color: var(--navy);
+}
+
+.hero-description {
+  margin-bottom: 32px;
+  color: #595b60;
+  font: 14px/1.85 var(--mono);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 13px;
+  flex-wrap: wrap;
+}
+
+.cursor {
+  color: var(--navy);
+  animation: blink 1s steps(2) infinite;
+}
+
+/* ================================
+   INTERACTIVE HANGING ID
+================================ */
+
+.lanyard-stage {
+  position: relative;
+  height: 665px;
+  min-width: 0;
+}
+
+.lanyard-stage::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75px;
+  height: 14px;
+  border-radius: 0 0 5px 5px;
+  background: #202630;
+}
+
+.lanyard-ropes {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.strap-edge,
+.strap-fabric {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.strap-edge {
+  stroke: #151c29;
+  stroke-width: 21;
+}
+
+.strap-fabric {
+  stroke: #3a4554;
+  stroke-width: 16;
+}
+
+.lanyard-badge {
+  --x: 0px;
+  --y: 0px;
+  --angle: 8deg;
+  --float: 0px;
+
+  position: absolute;
+  top: 170px;
+  left: 50%;
+  width: 269px;
+  max-width: 84%;
+  transform:
+    translate(
+      calc(-50% + var(--x)),
+      calc(var(--y) + var(--float))
+    )
+    rotate(var(--angle));
+  transform-origin: 50% 8px;
+  user-select: none;
+  touch-action: none;
+  cursor: grab;
+  will-change: transform;
+}
+
+.lanyard-badge.dragging {
+  cursor: grabbing;
+}
+
+.badge-hardware {
+  position: relative;
+  height: 42px;
+  display: grid;
+  justify-items: center;
+}
+
+.badge-ring {
+  width: 33px;
+  height: 31px;
+  border: 6px solid #b6b6b0;
+  border-radius: 50%;
+  box-shadow: 1px 2px 2px #0005;
+}
+
+.badge-clip {
+  width: 16px;
+  height: 23px;
+  position: absolute;
+  top: 20px;
+  border: 1px solid #555;
+  background: linear-gradient(
+    90deg,
+    #555,
+    #eee,
+    #666
+  );
+}
+
+.id-card {
+  border: 3px solid #222935;
+  border-radius: 4px;
+  background: #ece9de;
+  box-shadow: 10px 13px 19px #0003;
+  overflow: hidden;
+}
+
+.id-top,
+.id-bottom {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 12px;
+  background: #1d2735;
+  color: white;
+  font: bold 9px var(--mono);
+}
+
+.id-body {
+  padding: 14px 16px 12px;
+}
+
+.id-kicker {
+  font: bold 11px var(--mono);
+}
+
+.id-headline {
+  font: 900 34px/.99 var(--sans);
+  letter-spacing: -.06em;
+  margin: 3px 0 12px;
+}
+
+.id-headline span {
+  color: var(--navy);
+}
+
+.id-photo {
+  position: relative;
+  height: 225px;
+  border: 2px solid #1d2735;
+  overflow: hidden;
+  background: radial-gradient(
+    circle at 50% 35%,
+    #7f8994,
+    #303b4a
+  );
+}
+
+.photo-head {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 78px;
+  height: 89px;
+  border-radius: 45%;
+  background: #c5c7c6;
+}
+
+.photo-shoulders {
+  position: absolute;
+  left: 50%;
+  bottom: -105px;
+  transform: translateX(-50%);
+  width: 190px;
+  height: 160px;
+  border-radius: 50%;
+  background: #bfc2c2;
+}
+
+.id-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: none;
+}
+
+.id-photo img.ready {
+  display: block;
+}
+
+.id-photo-label {
+  position: absolute;
+  z-index: 2;
+  right: 7px;
+  top: 10px;
+  color: white;
+  writing-mode: vertical-rl;
+  font: bold 9px var(--mono);
+}
+
+.id-name {
+  width: 90%;
+  margin: -7px auto 8px;
+  position: relative;
+  z-index: 2;
+  transform: rotate(-3deg);
+  border: 2px solid #202630;
+  background: #fffdf7;
+  text-align: center;
+  font: 900 17px/1.35 var(--sans);
+  padding: 5px;
+}
+
+.id-detail {
+  display: flex;
+  justify-content: space-between;
+  font: bold 9px var(--mono);
+}
+
+.barcode {
+  margin-top: 10px;
+  width: 65%;
+  height: 19px;
+  background: repeating-linear-gradient(
+    90deg,
+    #222935 0 2px,
+    transparent 2px 4px,
+    #222935 4px 5px,
+    transparent 5px 8px
+  );
+}
+
+.info-strip {
+  background: #dad8d1;
+  border-bottom: 2px solid white;
+}
+
+.info-strip .container {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  font: bold 11px var(--mono);
+}
+
+/* ================================
+   SECTION HEADINGS
+================================ */
+
+.section {
+  padding: 86px 0 95px;
+}
+
+.section-alt {
+  background: #e0ded7;
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.section-kicker {
+  color: var(--navy);
+  font: bold 12px var(--mono);
+  white-space: nowrap;
+}
+
+.section-header h2 {
+  font-size: clamp(36px, 4vw, 49px);
+  letter-spacing: -.055em;
+  line-height: 1.1;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.section-header h2 span {
+  color: var(--navy);
+}
+
+.heading-rule {
+  border-top: 1px solid #bcb8af;
+  flex: 1;
+}
+
+.section-header small {
+  color: #696a6b;
+  font: 11px var(--mono);
+}
+
+.field-label {
+  font: bold 11px var(--mono);
+  color: var(--navy);
+}
+
+/* ================================
+   MINIMALIST ABOUT ME
+================================ */
+
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 230px;
+  align-items: center;
+  gap: 24px;
+  padding: 25px;
+}
+
+.about-profile {
+  order: 2;
+  padding: 15px 0 15px 22px;
+  text-align: center;
+  border-left: 1px solid #c4c1b9;
+  min-width: 0;
+}
+
+.about-avatar {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 164px;
+  height: 195px;
+  margin: 0 auto 15px;
+  background: #dedbd2;
+  border: 2px solid;
+  border-color: #777 white white #777;
+  font: bold 35px var(--mono);
+}
+
+.about-avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: none;
+}
+
+.about-avatar img.ready {
+  display: block;
+}
+
+.about-name {
+  font: bold 17px/1.3 var(--sans);
+  overflow-wrap: anywhere;
+  margin: 0 0 6px;
+}
+
+.about-role {
+  color: var(--navy);
+  margin: 0 0 8px;
+  font: bold 12px var(--mono);
+}
+
+.about-place {
+  color: #686861;
+  font-size: 12px;
+  margin: 0;
+}
+
+.about-copy {
+  order: 1;
+  min-width: 0;
+  padding: 3px 4px 4px 4px;
+}
+
+.file-label {
+  font: bold 11px var(--mono);
+  color: #666;
+}
+
+.about-copy h3 {
+  margin: 10px 0 14px;
+  font-size: clamp(26px, 3vw, 34px);
+  line-height: 1.2;
+  letter-spacing: -.04em;
+}
+
+.about-copy p {
+  max-width: 680px;
+  margin: 0 0 12px;
+  color: #4a4c50;
+  line-height: 1.72;
+}
+
+.skill-box {
+  margin: 20px 0;
+  padding-top: 15px;
+  border-top: 1px solid #c6c3bb;
+}
+
+.skill-box h4 {
+  margin: 0 0 9px;
+  font: bold 11px var(--mono);
+}
+
+.skills,
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.skills span,
+.tags span {
+  border: 1px solid;
+  border-color: white #8c8982 #8c8982 white;
+  background: #e5e3dc;
+  padding: 5px 9px;
+  font: 11px/1.35 var(--mono);
+}
+
+/* ================================
+   EXPERIENCES
+================================ */
+
+.timeline {
+  display: grid;
+  gap: 16px;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 165px minmax(0, 1fr);
+  gap: 23px;
+  align-items: start;
+}
+
+.timeline-date {
+  padding-top: 17px;
+  color: var(--navy);
+  font: bold 12px var(--mono);
+}
+
+.timeline-card {
+  padding: 20px 23px;
+}
+
+.timeline-card h3 {
+  margin: 7px 0 2px;
+  font-size: 22px;
+  line-height: 1.3;
+}
+
+.timeline-card h4 {
+  margin: 0 0 12px;
+  color: #666;
+  font-size: 13px;
+}
+
+.timeline-card p:last-child {
+  margin: 0;
+  max-width: 750px;
+  color: #575b60;
+}
+
+/* ================================
+   CERTIFICATION AND PROJECT CAROUSELS
+================================ */
+
+.carousel-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 16px;
+  font: bold 11px var(--mono);
+  color: #52545b;
+}
+
+.carousel-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.carousel-buttons[hidden] {
+  display: none;
+}
+
+.carousel-arrow {
+  height: 38px;
+  width: 39px;
+  cursor: pointer;
+  font: bold 19px var(--mono);
+}
+
+.carousel-arrow:disabled {
+  opacity: .35;
+  cursor: default;
+}
+
+.portfolio-track {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  padding: 4px 4px 16px;
+  scrollbar-color: var(--navy) #ddd;
+  scrollbar-width: thin;
+}
+
+.portfolio-track > article {
+  flex: 0 0 calc((100% - 36px) / 3);
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.portfolio-track > article:only-child {
+  flex-basis: min(100%, 370px);
+}
+
+/* Certifications */
+
+.cert-card {
+  padding: 18px;
+}
+
+.card-top,
+.cert-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font: 11px var(--mono);
+}
+
+.cert-preview {
+  height: 165px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  margin: 15px 0;
+  border: 1px solid #aaa;
+  background: #ebe9e2;
+}
+
+.cert-preview span {
+  font-size: 42px;
+  color: var(--navy);
+}
+
+.cert-preview img,
+.project-preview img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: none;
+  background: #ebe9e2;
+}
+
+.cert-preview img.ready,
+.project-preview img.ready {
+  display: block;
+}
+
+.cert-card h3 {
+  font-size: 19px;
+  line-height: 1.35;
+  margin: 5px 0 8px;
+}
+
+.cert-card p {
+  color: #62636b;
+  font-size: 13px;
+}
+
+.cert-bottom {
+  border-top: 1px solid #bbb;
+  padding-top: 13px;
+  margin-top: 22px;
+}
+
+.cert-bottom a,
+.project-links a {
+  color: var(--navy);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Projects */
+
+.project-card {
+  overflow: hidden;
+}
+
+.project-preview {
+  position: relative;
+  height: 168px;
+  display: grid;
+  place-items: center;
+  background: #dad8d1;
+  border-bottom: 1px solid #aaa;
+}
+
+.preview-fallback {
+  text-align: center;
+  font: bold 11px var(--mono);
+  color: #687083;
+}
+
+.preview-fallback strong {
+  display: block;
+  font: bold 48px var(--sans);
+}
+
+.project-body {
+  padding: 17px 18px 20px;
+}
+
+.project-body h3 {
+  margin: 8px 0;
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+.project-body > p:not(.field-label) {
+  min-height: 110px;
+  color: #60636a;
+  font-size: 13px;
+}
+
+.tags {
+  margin: 12px 0;
+}
+
+.project-links {
+  border-top: 1px solid #c6c3ba;
+  padding-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  font: bold 11px var(--mono);
+}
+
+.project-links span {
+  color: #666;
+}
+
+/* ================================
+   CONTACT
+================================ */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: .78fr 1.22fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.contact-info h3 {
+  font-size: clamp(37px, 5vw, 62px);
+  letter-spacing: -.06em;
+  line-height: 1.07;
+  margin: 19px 0;
+}
+
+.contact-info h3 span {
+  color: var(--navy);
+}
+
+.contact-info .muted {
+  max-width: 350px;
+  color: #5c5e64;
+}
+
+.contact-status {
+  display: flex;
+  align-items: center;
+  margin-top: 25px;
+  font: bold 11px var(--mono);
+}
+
+.directory-content {
+  padding: 22px;
+}
+
+.contact-list {
+  margin-top: 13px;
+}
+
+.contact-row {
+  display: grid;
+  grid-template-columns: 105px minmax(0, 1fr);
+  align-items: start;
+  border-top: 1px solid #d0cdc4;
+  padding: 13px 0;
+  gap: 15px;
+}
+
+.contact-row > span {
+  font: bold 11px var(--mono);
+}
+
+.contact-row p {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font: 13px/1.5 var(--mono);
+}
+
+.contact-row a {
+  color: var(--navy);
+}
+
+.contact-row a:hover {
+  text-decoration: underline;
+}
+
+/* ================================
+   FOOTER
+================================ */
+
+.site-footer {
+  border-top: 2px solid white;
+  background: #d9d7d0;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 22px 0;
+  font: 11px var(--mono);
+}
+
+/* ================================
+   WINDOWS 98 TASKBAR
+================================ */
+
+.taskbar {
+  position: fixed;
+  z-index: 900;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  background: #d8d6cf;
+  border-top: 2px solid white;
+  box-shadow: 0 -1px 0 #777;
+  font: bold 12px var(--mono);
+}
+
+.start-button,
+.task-app,
+.task-clock {
+  height: 33px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+.start-button {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.start-button[aria-expanded="true"] {
+  border-color: #777 white white #777;
+  background: #cccac3;
+}
+
+.start-button strong {
+  color: var(--navy);
+}
+
+.task-divider {
+  height: 27px;
+  border-left: 1px solid #777;
+  border-right: 1px solid white;
+}
+
+.task-app {
+  min-width: 133px;
+  border-color: #777 white white #777;
+}
+
+.task-spacer {
+  flex: 1;
+}
+
+.task-clock {
+  background: #cbc9c2;
+  border: 1px solid;
+  border-color: #777 white white #777;
+}
+
+/* Start menu */
+
+.start-menu {
+  position: fixed;
+  z-index: 950;
+  bottom: 44px;
+  left: 5px;
+  width: 252px;
+  max-width: calc(100vw - 10px);
+  display: flex;
+  background: #dad8d1;
+  border: 2px solid;
+  border-color: white #444 #444 white;
+  box-shadow: 2px 2px 0 #222;
+}
+
+.start-menu[hidden] {
+  display: none;
+}
+
+.start-rail {
+  padding: 17px 7px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  background: #263c70;
+  color: white;
+  font: bold 19px var(--sans);
+}
+
+.start-items {
+  flex: 1;
+  padding: 5px;
+}
+
+.start-items a {
+  display: block;
+  padding: 9px 11px;
+  font-size: 13px;
+}
+
+.start-items a:hover {
+  background: var(--navy);
+  color: white;
+}
+
+.start-separator {
+  border-top: 1px solid #777;
+  border-bottom: 1px solid white;
+  margin: 4px 2px;
+}
+
+/* ================================
+   RETRO ANIMATIONS
+================================ */
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity .6s ease,
+    transform .6s ease;
+}
+
+.js .reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.js .type-on-view {
+  animation: type-reveal .85s steps(22, end) both;
+}
+
+@keyframes type-reveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+================================ */
+
+@media (max-width: 950px) {
+  .site-status,
+  .brand {
+    flex: 0 0 auto;
+  }
+
+  .nav-links a {
+    padding: 9px 7px;
+    font-size: 11px;
+  }
+
+  .portfolio-track > article {
+    flex-basis: calc((100% - 18px) / 2);
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr 1.3fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 760px) {
+  .navbar {
+    min-height: 62px;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px 20px 15px;
+    background: #dedcd6;
+    border-bottom: 2px solid #888;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .menu-toggle {
+    display: block;
+    margin-left: auto;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .hero-copy {
+    padding: 85px 0 20px;
+  }
+
+  .hero-greeting {
+    margin-top: 20px;
+  }
+
+  .lanyard-stage {
+    height: 630px;
+    width: min(450px, 100%);
+    margin: 0 auto;
+  }
+
+  .section {
+    padding: 66px 0 75px;
+  }
+
+  .section-header {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .section-header .heading-rule {
+    min-width: 40px;
+  }
+
+  .about-layout {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+
+  .about-profile {
+    order: 1;
+    display: grid;
+    grid-template-columns: 81px minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    align-items: center;
+    column-gap: 16px;
+    text-align: left;
+    padding: 0 0 16px;
+    margin-bottom: 17px;
+    border-left: 0;
+    border-bottom: 1px solid #c4c1b9;
+  }
+
+  .about-avatar {
+    width: 78px;
+    height: 87px;
+    margin: 0;
+    grid-row: 1 / 4;
+    font-size: 28px;
+  }
+
+  .about-name {
+    font-size: 17px;
+  }
+
+  .about-role,
+  .about-place {
+    margin: 0;
+  }
+
+  .about-copy {
+    order: 2;
+    padding: 0 2px;
+  }
+
+  .timeline-item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .timeline-date {
+    padding-top: 0;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+}
+
+@media (max-width: 540px) {
+  .container {
+    width: min(100% - 28px, 1120px);
+  }
+
+  .hero h1 {
+    font-size: clamp(41px, 12vw, 57px);
+  }
+
+  .hero-actions {
+    gap: 10px;
+  }
+
+  .section-header h2 {
+    font-size: 36px;
+  }
+
+  .section-header small {
+    display: none;
+  }
+
+  .portfolio-track > article {
+    flex-basis: min(90%, 360px);
+  }
+
+  .project-body > p:not(.field-label) {
+    min-height: 0;
+  }
+
+  .contact-row {
+    grid-template-columns: 80px minmax(0, 1fr);
+    gap: 9px;
+  }
+
+  .task-app {
+    min-width: 0;
+    max-width: 128px;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 370px) {
+  .task-app,
+  .task-divider {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+
+  .portfolio-track {
+    scroll-behavior: auto;
+  }
+}
+
+
+/* CERTIFICATION COLLECTION: 8 uploaded credentials + existing TESDA placeholder */
+.cert-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 380px;
+}
+.cert-card .card-top {
+  min-height: 35px;
+}
+.cert-card .cert-provider {
+  color: var(--navy);
+  font-weight: bold;
+}
+.cert-preview {
+  height: 180px;
+  overflow: hidden;
+}
+.cert-preview a {
+  position: absolute;
+  inset: 0;
+  display: block;
+  z-index: 1;
+}
+.cert-preview a:focus-visible {
+  outline: 3px solid var(--navy);
+  outline-offset: -4px;
+}
+.cert-preview img.ready {
+  display: block;
+}
+.cert-card .cert-date {
+  margin: 0 0 10px;
+  font: bold 11px var(--mono);
+  color: #6d7080;
+}
+.cert-card .cert-issuer {
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.cert-card .cert-bottom {
+  margin-top: auto;
+  gap: 12px;
+}
+.cert-card .cert-bottom a {
+  font-weight: bold;
+  white-space: nowrap;
+}
+.cert-card .cert-thumb-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  font: bold 10px var(--mono);
+  color: #555d67;
+}
+.cert-card .cert-thumb-row img {
+  display: block;
+  width: 37px;
+  height: 43px;
+  object-fit: contain;
+  border: 1px solid #b7c4d4;
+  background: #fff;
+}
+
+</style>
+
+<noscript>
+  <style>.boot-screen { display: none; }</style>
+</noscript>
+</head>
+
+<body>
+
+<!-- SCROLL PROGRESS -->
+<div class="reading-progress" aria-hidden="true">
+  <span id="reading-fill"></span>
+</div>
+
+<a class="skip-link" href="#home">Skip to content</a>
+
+<!-- BOOT SCREEN -->
+<div class="boot-screen" id="boot-screen">
+  <div class="boot-box">
+    <p>Loading Joax's portfolio...</p>
+    <div class="boot-symbol">[ * - * ]</div>
+    <h2>Joax.exe</h2>
+    <p id="boot-message">INITIALIZING INTERFACE...</p>
+    <div class="boot-progress">
+      <span id="boot-progress"></span>
+    </div>
+    <div class="boot-footer">
+      <span>SYSTEM STARTUP</span>
+      <span id="boot-percent">0%</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<header class="site-header">
+  <div class="container navbar">
+    <div class="site-status">
+      <span class="status-dot"></span>
+      SYS: ONLINE
+    </div>
+
+    <button
+      class="menu-toggle"
+      id="menu-toggle"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="nav-links"
+    >
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav-links" id="nav-links">
+      <a class="active" href="#home">Home</a>
+      <a href="#about">About Me</a>
+      <a href="#experiences">Experiences</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <a href="#home" class="brand" aria-label="Home">
+      { }
+    </a>
+  </div>
+</header>
+
+<main>
+
+<!-- ================================
+     HOME
+================================ -->
+<section id="home" class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy reveal">
+      <div class="eyebrow">
+        <span class="status-dot"></span>
+        PORTFOLIO / 2026
+      </div>
+
+      <p class="hero-greeting">
+        Hello there... <span class="cursor">_</span>
+      </p>
+
+      <h1>
+        I'm<br>
+        <span>Joaquin Rafael<br>Rucio.</span>
+      </h1>
+
+      <p class="hero-description">
+        [ Information Technology Student / Aspiring Developer ]
+      </p>
+
+      <div class="hero-actions">
+        <a class="win-button primary" href="#projects">
+          Explore My Projects ↗
+        </a>
+        <a class="win-button" href="#contact">
+          Get In Touch →
+        </a>
+      </div>
+    </div>
+
+    <!-- DRAGGABLE ID -->
+    <div
+      class="lanyard-stage reveal"
+      id="lanyard-stage"
+    >
+      <svg
+        class="lanyard-ropes"
+        id="lanyard-ropes"
+        aria-hidden="true"
+      >
+        <path class="strap-edge" id="left-edge"></path>
+        <path class="strap-fabric" id="left-fabric"></path>
+        <path class="strap-edge" id="right-edge"></path>
+        <path class="strap-fabric" id="right-fabric"></path>
+      </svg>
+
+      <div
+        class="lanyard-badge"
+        id="lanyard-badge"
+        tabindex="0"
+        role="button"
+        aria-label="Draggable ID card. Drag or use arrow keys to move."
+      >
+        <div class="badge-hardware">
+          <div class="badge-ring"></div>
+          <div class="badge-clip"></div>
+        </div>
+
+        <div class="id-card">
+          <div class="id-top">
+            <span>PORTFOLIO / ID CARD</span>
+            <span>JOAX_98</span>
+          </div>
+
+          <div class="id-body">
+            <div class="id-kicker">
+              HELLO, I'M AN
+            </div>
+
+            <div class="id-headline">
+              I.T STUDENT<span>.</span>
+            </div>
+
+            <div class="id-photo">
+              <div class="photo-head"></div>
+              <div class="photo-shoulders"></div>
+
+              <!-- YOUR ID PHOTO -->
+              <img
+                src="profile.jpg"
+                alt="Joaquin Rafael Rucio"
+                data-optional-image
+              >
+
+              <span class="id-photo-label">
+                IDENTITY_01
+              </span>
+            </div>
+
+            <div class="id-name">
+              Joaquin Rafael Rucio
+            </div>
+
+            <div class="id-detail">
+              <span>PROFILE / 01</span>
+              <span>CALAPAN / PH</span>
+            </div>
+
+            <div class="barcode"></div>
+          </div>
+
+          <div class="id-bottom">
+            <span>PORTFOLIO // ACCESS</span>
+            <span>V.98</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="info-strip">
+  <div class="container">
+    <span>01 / 06</span>
+    <span>SCROLL TO EXPLORE ↓</span>
+  </div>
+</div>
+
+<!-- ================================
+     ABOUT ME
+================================ -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-kicker">01 / PROFILE</span>
+      <h2>About Me<span>.</span></h2>
+      <div class="heading-rule"></div>
+      <small>ABOUT.EXE</small>
+    </div>
+
+    <div class="window reveal">
+      <div class="window-bar">
+        <span>▣ ABOUT_ME.EXE</span>
+        <div class="window-controls" aria-hidden="true">
+          <span>_</span><span>□</span><span>×</span>
+        </div>
+      </div>
+
+      <div class="window-menu" aria-hidden="true">
+        <span>File</span>
+        <span>Edit</span>
+        <span>View</span>
+        <span>Help</span>
+      </div>
+
+      <div class="about-layout">
+        <!-- PROFILE -->
+        <div class="about-profile">
+          <div class="about-avatar">
+            <span>JR</span>
+            <img
+              src="profile.jpg"
+              alt="Joaquin Rafael Rucio portrait"
+              data-optional-image
+            >
+          </div>
+
+          <p class="about-name">
+            Joaquin Rafael<br>Rucio
+          </p>
+          <p class="about-role">IT Student</p>
+          <p class="about-place">Calapan City, PH</p>
+        </div>
+
+        <!-- PERSONAL SUMMARY -->
+        <div class="about-copy">
+          <span class="file-label">
+            PROFILE.TXT / READ ONLY
+          </span>
+
+          <h3>Hi, I'm Joaquin.</h3>
+
+          <p>
+            I'm a third-year Information Technology student
+            at Divine Word College of Calapan. I enjoy
+            developing web applications, working with
+            databases, and learning about computer networks.
+          </p>
+
+          <p>
+            My current focus is improving my technical skills
+            through projects, testing, debugging, and
+            consistent practice.
+          </p>
+
+          <div class="skill-box">
+            <h4>AREAS I'M WORKING WITH</h4>
+            <div class="skills">
+              <span>HTML &amp; CSS</span>
+              <span>JavaScript</span>
+              <span>C#</span>
+              <span>ASP.NET MVC</span>
+              <span>Laravel</span>
+              <span>MySQL</span>
+            </div>
+          </div>
+
+          <a href="#projects" class="win-button">
+            View My Projects →
+          </a>
+        </div>
+      </div>
+
+      <div class="window-status">
+        <span>Ready</span>
+        <span>1 profile loaded</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================
+     EXPERIENCES
+================================ -->
+<section id="experiences" class="section section-alt">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-kicker">02 / HISTORY</span>
+      <h2>Experiences<span>.</span></h2>
+      <div class="heading-rule"></div>
+      <small>HISTORY.LOG</small>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-date">2026 / ACADEMIC</div>
+        <article class="timeline-card window">
+          <span class="field-label">
+            ENTRY_001 / APPLICATION DEVELOPMENT
+          </span>
+
+          <h3>Web Application Development</h3>
+          <h4>Coursework and personal practice</h4>
+
+          <p>
+            Developed and debugged CRUD applications using
+            ASP.NET Core MVC, Laravel, and MySQL. Worked with
+            models, controllers, views, migrations, and
+            database connections.
+          </p>
+        </article>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">2026 / ACADEMIC</div>
+        <article class="timeline-card window">
+          <span class="field-label">
+            ENTRY_002 / DATABASE DESIGN
+          </span>
+
+          <h3>Database Design and SQL</h3>
+          <h4>MySQL and relational databases</h4>
+
+          <p>
+            Designed related database tables, created
+            entity relationship diagrams, and practiced
+            SQL queries for managing and retrieving records.
+          </p>
+        </article>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">2026 / ACADEMIC</div>
+        <article class="timeline-card window">
+          <span class="field-label">
+            ENTRY_003 / NETWORKING AND DATA
+          </span>
+
+          <h3>Networking and Data Visualization</h3>
+          <h4>Cisco Packet Tracer and Power BI labs</h4>
+
+          <p>
+            Configured simulated VLANs, routing, and NAT.
+            Created reports and visualizations using Power BI
+            and introductory DAX measures.
+          </p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================
+     CERTIFICATIONS
+================================ -->
+<section id="certifications" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-kicker">03 / CREDENTIALS</span>
+      <h2>Certifications<span>.</span></h2>
+      <div class="heading-rule"></div>
+      <small>CERTS.DIR</small>
+    </div>
+
+    <div class="carousel-toolbar">
+      <span>CERTIFICATIONS / SWIPE FOR MORE / 8 DOCUMENTS</span>
+      <div class="carousel-buttons">
+        <button class="carousel-arrow prev" type="button" aria-label="Previous certification">←</button>
+        <button class="carousel-arrow next" type="button" aria-label="Next certification">→</button>
+      </div>
+    </div>
+
+    <div class="portfolio-track" data-carousel="certifications" tabindex="0"
+         role="region" aria-label="Certifications carousel">
+
+      <!-- DOC_001: JavaScript Essentials 1 -->
+      <article class="cert-card window reveal">
+        <div class="card-top">
+          <span>DOC_001 / <span class="cert-provider">CISCO</span></span>
+          <span>◩</span>
+        </div>
+        <div class="cert-preview">
+          <span aria-hidden="true">✳</span>
+          <a href="assets/certifications/javascript-essentials-1.pdf" target="_blank" rel="noopener noreferrer"
+             aria-label="View PDF certificate: JavaScript Essentials 1">
+            <img src="assets/certifications/javascript-essentials-1.jpg" alt="Preview of JavaScript Essentials 1 certificate" loading="lazy" data-optional-image>
+          </a>
+        </div>
+        <p class="cert-date">ISSUED / May 12, 2026</p>
+        <h3>JavaScript Essentials 1</h3>
+        <p class="cert-issuer">Cisco Networking Academy &amp; OpenEDG JavaScript Institute</p>
+        <div class="cert-thumb-row">
+          <img src="assets/certifications/javascript-essentials-1-badge.png" alt="Cisco verified digital course badge" loading="lazy">
+          <span>VERIFIED COURSE BADGE</span>
+        </div>
+        <div class="cert-bottom">
+          <span>JAVASCRIPT</span>
+          <a href="assets/certifications/javascript-essentials-1.pdf" target="_blank" rel="noopener noreferrer">VIEW CERTIFICATE ↗</a>
+        </div>
+      </article>
+
+      <!-- DOC_002: Networking Devices and Basic Configuration -->
+      <article class="cert-card window reveal">
+        <div class="card-top">
+          <span>DOC_002 / <span class="cert-provider">CISCO</span></span>
+          <span>◩</span>
+        </div>
+        <div class="cert-preview">
+          <span aria-hidden="true">✳</span>
+          <a href="assets/certifications/networking-devices-basic-configuration.pdf" target="_blank" rel="noopener noreferrer"
+             aria-label="View PDF certificate: Networking Devices and Basic Configuration">
+            <img src="assets/certifications/networking-devices-basic-configuration.jpg" alt="Preview of Networking Devices and Basic Configuration certificate" loading="lazy" data-optional-image>
+          </a>
+        </div>
+        <p class="cert-date">ISSUED / Nov 4, 2026</p>
+        <h3>Networking Devices and Basic Configuration</h3>
+        <p class="cert-issuer">Cisco Networking Academy</p>
+        <div class="cert-thumb-row">
+          <img src="assets/certifications/networking-devices-basic-configuration-badge.png" alt="Cisco verified digital course badge" loading="lazy">
+          <span>VERIFIED COURSE BADGE</span>
+        </div>
+        <div class="cert-bottom">
+          <span>NETWORKING</span>
+          <a href="assets/certifications/networking-devices-basic-configuration.pdf" target="_blank" rel="noopener noreferrer">VIEW CERTIFICATE ↗</a>
+        </div>
+      </article>
+
+      <!-- DOC_003: Network Addressing and Basic Troubleshooting -->
+      <article class="cert-card window reveal">
+        <div class="card-top">
+          <span>DOC_003 / <span class="cert-provider">CISCO</span></span>
+          <span>◩</span>
+        </div>
+        <div class="cert-preview">
+          <span aria-hidden="true">✳</span>
+          <a href="assets/certifications/network-addressing-basic-troubleshooting.pdf" target="_blank" rel="noopener noreferrer"
+             aria-label="View PDF certificate: Network Addressing and Basic Troubleshooting">
+            <img src="assets/certifications/network-addressing-basic-troubleshooting.jpg" alt="Preview of Network Addressing and Basic Troubleshooting certificate" loading="lazy" data-optional-image>
+          </a>
+        </div>
+        <p class="cert-date">ISSUED / Nov 3, 2026</p>
+        <h3>Network Addressing and Basic Troubleshooting</h3>
+        <p class="cert-issuer">Cisco Networking Academy</p>
+        <div class="cert-thumb-row">
+          <img src="assets/certifications/network-addressing-basic-troubleshooting-badge.png" alt="Cisco verified digital course badge" loading="lazy">
+          <span>VERIFIED COURSE BADGE</span>
+        </div>
+        <div class="cert-bottom">
+          <span>NETWORKING</span>
+          <a href="assets/certifications/network-addressing-basic-troubleshooting.pdf" target="_blank" rel="noopener noreferrer">VIEW CERTIFICATE ↗</a>
+        </div>
+      </article>
+
+      <!-- DOC_004: Networking Basics -->
+      <article class="cert-card window reveal">
+        <div class="card-top">
+          <span>DOC_004 / <span class="cert-provider">CISCO</span></span>
+          <span>◩</span>
+        </div>
+        <div class="cert-preview">
+          <span aria-hidden="true">✳</span>
+          <a href="assets/certifications/networking-basics.pdf" target="_blank" rel="noopener noreferrer"
+             aria-label="View PDF certificate: Networking Basics">
+            <img src="assets/certifications/networking-basics.jpg" alt="Preview of Networking Basics certificate" loading="lazy" data-optional-image>
+          </a>
+        </div>
+        <p class="cert-date">ISSUED / Apr 25, 2026</p>
+        <h3>Networking Basics</h3>
+        <p class="cert-issuer">Cisco Networking Academy</p>
+        <div class="cert-thumb-row">
+          <img src="assets/certifications/networking-basics-badge.png" alt="Cisco verified digital course badge" loading="lazy">
+          <span>VERIFIED COURSE BADGE</span>
+        </div>
+        <div class="cert-bottom">
+          <span>NETWORKING</span>
+          <a href="assets/certifications/networking-basics.pdf" target="_blank" rel="noopener noreferrer">VIEW CERTIFICATE ↗</a>
+        </div>
+      </article>
+
+      <!-- DOC_005: Learn CCNA 200-301 Network Fundamentals Online -->
+      <article class="cert-card window reveal">
+        <div class="card-top">
+          <span>DOC_005 / <span class="cert-provider">SKILLUP</span></span>
+          <span>◩</span>
+        </div>
+        <div class="cert-preview">
+          <span aria-hidden="true">✳</span>
+          <a href="assets/certifications/ccna-network-fundamentals.pdf" target="_blank" rel="noopener noreferrer"
+             aria-label="View PDF certificate: Learn CCNA 200-301 Network Fundamentals Online">
+            <img src="assets/certifications/ccna-network-fundamentals.jpg" alt="Preview of Learn CCNA 200-301 Network Fundamentals Online certificate" loading="lazy" data-optional-image>
+          </a>
+        </div>
+        <p class="cert-date">ISSUED / Nov 3, 2026</p>
+        <h3>Learn CCNA 200-301 Network Fundamentals Online</h3>
+        <p class="cert-issuer">Simplilearn SkillUp</p>
+        <div class="cert-thumb-row"><span>CERTIFICATE ID / 10989603</span></div>
+        <div class="cert-bottom">
+          <span>NETWORKING</span>
+          <a href="assets/certifications/ccna-network-fundamentals.pdf" target="_blank" rel="noopener noreferrer">VIEW CERTIFICATE ↗</a>
+        </div>
+      </article>
+
+      <!-- DOC_006: Introduction to the Computer Networking -->
+      <article class="cert-card window reveal">
+        <div class="card-top">
+          <span>DOC_006 / <span class="cert-provider">SKILLUP</span></span>
+          <span>◩</span>
+        </div>
+        <div class="cert-preview">
+          <span aria-hidden="true">✳</span>
+          <a href="assets/certifications/introduction-computer-networking.pdf" target="_blank" rel="noopener noreferrer"
+             aria-label="View PDF certificate: Introduction to the Computer Networking">
+            <img src="assets/certifications/introduction-computer-networking.jpg" alt="Preview of Introduction to the Computer Networking certificate" loading="lazy" data-optional-image>
+          </a>
+        </div>
+        <p class="cert-date">ISSUED / Apr 23, 2026</p>
+        <h3>Introduction to the Computer Networking</h3>
+        <p class="cert-issuer">Simplilearn SkillUp</p>
+        <div class="cert-thumb-row"><span>CERTIFICATE ID / 10143701</span></div>
+        <div class="cert-bottom">
+          <span>NETWORKING</span>
+          <a href="assets/certifications/introduction-computer-networking.pdf" target="_blank" rel="noopener noreferrer">VIEW CERTIFICATE ↗</a>
+        </div>
+      </article>
+
+      <!-- DOC_007: Introduction to Data Science -->
+      <article class="cert-card window reveal">
+        <div class="card-top">
+          <span>DOC_007 / <span class="cert-provider">SKILLUP</span></span>
+          <span>◩</span>
+        </div>
+        <div class="cert-preview">
+          <span aria-hidden="true">✳</span>
+          <a href="assets/certifications/introduction-data-science.pdf" target="_blank" rel="noopener noreferrer"
+             aria-label="View PDF certificate: Introduction to Data Science">
+            <img src="assets/certifications/introduction-data-science.jpg" alt="Preview of Introduction to Data Science certificate" loading="lazy" data-optional-image>
+          </a>
+        </div>
+        <p class="cert-date">ISSUED / May 23, 2026</p>
+        <h3>Introduction to Data Science</h3>
+        <p class="cert-issuer">Simplilearn SkillUp</p>
+        <div class="cert-thumb-row"><span>CERTIFICATE ID / 10261113</span></div>
+        <div class="cert-bottom">
+          <span>DATA SCIENCE</span>
+          <a href="assets/certifications/introduction-data-science.pdf" target="_blank" rel="noopener noreferrer">VIEW CERTIFICATE ↗</a>
+        </div>
+      </article>
+
+      <!-- DOC_008: JavaScript for Beginners -->
+      <article class="cert-card window reveal">
+        <div class="card-top">
+          <span>DOC_008 / <span class="cert-provider">SKILLUP</span></span>
+          <span>◩</span>
+        </div>
+        <div class="cert-preview">
+          <span aria-hidden="true">✳</span>
+          <a href="assets/certifications/javascript-for-beginners.pdf" target="_blank" rel="noopener noreferrer"
+             aria-label="View PDF certificate: JavaScript for Beginners">
+            <img src="assets/certifications/javascript-for-beginners.jpg" alt="Preview of JavaScript for Beginners certificate" loading="lazy" data-optional-image>
+          </a>
+        </div>
+        <p class="cert-date">ISSUED / Apr 13, 2026</p>
+        <h3>JavaScript for Beginners</h3>
+        <p class="cert-issuer">Simplilearn SkillUp</p>
+        <div class="cert-thumb-row"><span>CERTIFICATE ID / 10096028</span></div>
+        <div class="cert-bottom">
+          <span>JAVASCRIPT</span>
+          <a href="assets/certifications/javascript-for-beginners.pdf" target="_blank" rel="noopener noreferrer">VIEW CERTIFICATE ↗</a>
+        </div>
+      </article>
+
+      <!-- EXISTING TESDA CREDENTIAL: upload proof to add PDF link -->
+      <article class="cert-card window reveal">
+        <div class="card-top"><span>DOC_009 / <span class="cert-provider">TESDA</span></span><span>◩</span></div>
+        <div class="cert-preview">
+          <span aria-hidden="true">✳</span>
+          <img src="assets/certifications/tesda-nc2.jpg" alt="TESDA NC II certificate preview" data-optional-image>
+        </div>
+        <p class="cert-date">DATE / TO ADD</p>
+        <h3>National Certificate II in Computer Systems Servicing</h3>
+        <p class="cert-issuer">Technical Education and Skills Development Authority (TESDA)</p>
+        <div class="cert-bottom"><span>CSS / NC II</span><span>PDF / TO ADD</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================================
+     PROJECTS
+================================ -->
+<section id="projects" class="section section-alt">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-kicker">04 / WORK</span>
+      <h2>Projects<span>.</span></h2>
+      <div class="heading-rule"></div>
+      <small>PROJECTS.DIR</small>
+    </div>
+
+    <div class="carousel-toolbar">
+      <span>SELECTED PROJECTS / SWIPE OR USE ARROWS</span>
+      <div class="carousel-buttons">
+        <button class="carousel-arrow prev" type="button"
+          aria-label="Previous project">←</button>
+        <button class="carousel-arrow next" type="button"
+          aria-label="Next project">→</button>
+      </div>
+    </div>
+
+    <div
+      class="portfolio-track"
+      data-carousel="projects"
+      tabindex="0"
+      role="region"
+      aria-label="Projects carousel"
+    >
+
+      <!-- PROJECT 01 -->
+      <article class="project-card window reveal">
+        <div class="window-bar">
+          <span>PROJECT_01.EXE</span>
+          <span>□ ×</span>
+        </div>
+
+        <div class="project-preview">
+          <div class="preview-fallback">
+            <strong>01</strong>
+            LIBRARY SYSTEM
+          </div>
+          <img
+            src="assets/projects/library-management.jpg"
+            alt="Library Management System screenshot"
+            data-optional-image
+          >
+        </div>
+
+        <div class="project-body">
+          <span class="field-label">WORK FILE / 001</span>
+          <h3>Library Management System</h3>
+          <p>
+            CRUD application for adding, displaying,
+            editing, and deleting book records.
+          </p>
+          <div class="tags">
+            <span>ASP.NET MVC</span>
+            <span>C#</span>
+            <span>MySQL</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/jo4xxx"
+              target="_blank" rel="noopener noreferrer">
+              GITHUB PROFILE ↗
+            </a>
+            <span>DEMO / TO ADD</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 02 -->
+      <article class="project-card window reveal">
+        <div class="window-bar">
+          <span>PROJECT_02.EXE</span>
+          <span>□ ×</span>
+        </div>
+
+        <div class="project-preview">
+          <div class="preview-fallback">
+            <strong>02</strong>
+            COASTAL MONITOR
+          </div>
+          <img
+            src="assets/projects/coastal-cleanup.jpg"
+            alt="Coastal Cleanup Monitor screenshot"
+            data-optional-image
+          >
+        </div>
+
+        <div class="project-body">
+          <span class="field-label">WORK FILE / 002</span>
+          <h3>Coastal Cleanup Monitor</h3>
+          <p>
+            Laravel coursework involving cleanup activities,
+            site records, and a database-backed dashboard.
+          </p>
+          <div class="tags">
+            <span>Laravel</span>
+            <span>PHP</span>
+            <span>MySQL</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/jo4xxx"
+              target="_blank" rel="noopener noreferrer">
+              GITHUB PROFILE ↗
+            </a>
+            <span>DEMO / TO ADD</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 03 -->
+      <article class="project-card window reveal">
+        <div class="window-bar">
+          <span>PROJECT_03.EXE</span>
+          <span>□ ×</span>
+        </div>
+
+        <div class="project-preview">
+          <div class="preview-fallback">
+            <strong>03</strong>
+            CAR RENTAL DB
+          </div>
+          <img
+            src="assets/projects/car-rental-database.jpg"
+            alt="Car Rental Database preview"
+            data-optional-image
+          >
+        </div>
+
+        <div class="project-body">
+          <span class="field-label">WORK FILE / 003</span>
+          <h3>Car Rental Database</h3>
+          <p>
+            Relational database covering customers, vehicles,
+            reservations, rentals, payments, and maintenance.
+          </p>
+          <div class="tags">
+            <span>MySQL</span>
+            <span>SQL</span>
+            <span>Database Design</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/jo4xxx"
+              target="_blank" rel="noopener noreferrer">
+              GITHUB PROFILE ↗
+            </a>
+            <span>DEMO / TO ADD</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 04 -->
+      <article class="project-card window reveal">
+        <div class="window-bar">
+          <span>PROJECT_04.EXE</span>
+          <span>□ ×</span>
+        </div>
+
+        <div class="project-preview">
+          <div class="preview-fallback">
+            <strong>04</strong>
+            RETRO PORTFOLIO
+          </div>
+          <img
+            src="assets/projects/portfolio.jpg"
+            alt="Personal portfolio preview"
+            data-optional-image
+          >
+        </div>
+
+        <div class="project-body">
+          <span class="field-label">WORK FILE / 004</span>
+          <h3>Personal Portfolio Website</h3>
+          <p>
+            Responsive Windows-inspired portfolio with
+            an interactive ID card, animations, and a
+            project gallery.
+          </p>
+          <div class="tags">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/jo4xxx"
+              target="_blank" rel="noopener noreferrer">
+              GITHUB PROFILE ↗
+            </a>
+            <span>LIVE SITE / TO ADD</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 05 -->
+      <article class="project-card window reveal">
+        <div class="window-bar">
+          <span>PROJECT_05.EXE</span>
+          <span>□ ×</span>
+        </div>
+
+        <div class="project-preview">
+          <div class="preview-fallback">
+            <strong>04</strong>
+            RETRO PORTFOLIO
+          </div>
+          <img
+            src="assets/projects/portfolio.jpg"
+            alt="Space Pong Game"
+            data-optional-image
+          >
+        </div>
+
+        <div class="project-body">
+          <span class="field-label">WORK FILE / 005</span>
+          <h3>Space Pong Game</h3>
+          <p>
+            Space Pong is a fast-paced, sci-fi reimagining of the classic arcade game built entirely in Java
+            using object-oriented principles and Java Swing/AWT graphics.
+          </p>
+          <div class="tags">
+            <span>Java</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/jo4xxx"
+              target="_blank" rel="noopener noreferrer">
+              GITHUB PROFILE ↗
+            </a>
+            <span>LIVE SITE / TO ADD</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================
+     CONTACT
+================================ -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-kicker">05 / CONNECT</span>
+      <h2>Contact<span>.</span></h2>
+      <div class="heading-rule"></div>
+      <small>CONTACT.DIR</small>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <span class="field-label">
+          &gt; COMMUNICATION CHANNELS
+        </span>
+
+        <h3>
+          LET'S GET IN<br>
+          <span>TOUCH.</span>
+        </h3>
+
+        <p class="muted">
+          Interested in collaboration, web projects, or
+          discussing technology? Reach me through the
+          channels listed here.
+        </p>
+
+        <div class="contact-status">
+          <span class="status-dot"></span>
+          CONTACT / OPEN FOR MESSAGES
+        </div>
+      </div>
+
+      <div class="contact-directory window reveal">
+        <div class="window-bar">
+          <span>▣ CONTACT_DIRECTORY.EXE</span>
+          <span>□ ×</span>
+        </div>
+
+        <div class="directory-content">
+          <span class="field-label">
+            &gt; AVAILABLE CHANNELS_
+          </span>
+
+          <div class="contact-list">
+
+            <div class="contact-row">
+              <span>EMAIL</span>
+              <p>
+                <a href="mailto:joaxrafael14@gmail.com">
+                  joaxrafael14@gmail.com
+                </a>
+              </p>
+            </div>
+
+            <div class="contact-row">
+              <span>PHONE</span>
+              <p>
+                <a href="tel:+639611420112">
+                  +63 9611420112
+                </a>
+              </p>
+            </div>
+
+            <div class="contact-row">
+              <span>GITHUB</span>
+              <p>
+                <a href="https://github.com/jo4xxx"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  github.com/jo4xxx
+                </a>
+              </p>
+            </div>
+
+            <div class="contact-row">
+              <span>LINKEDIN</span>
+              <p>
+                <a href="https://www.linkedin.com/in/joaquinrucio/"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  linkedin.com/in/joaquinrucio
+                </a>
+              </p>
+            </div>
+
+            <div class="contact-row">
+              <span>FACEBOOK</span>
+              <p>
+                <a href="https://www.facebook.com/jo4xx"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  facebook.com/jo4xx
+                </a>
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>
+      © <span id="year">2026</span> Joaquin Rafael Rucio
+    </span>
+    <span>PORTFOLIO / 2026</span>
+    <a href="#home">BACK TO TOP ↑</a>
+  </div>
+</footer>
+
+<!-- WINDOWS 98 TASKBAR -->
+<div class="taskbar">
+  <button
+    class="start-button"
+    id="start-button"
+    aria-controls="start-menu"
+    aria-expanded="false"
+    type="button"
+  >
+    <strong>▦</strong> Start
+  </button>
+
+  <span class="task-divider" aria-hidden="true"></span>
+
+  <a href="#home" class="task-app">
+    ▣ JOAX.EXE
+  </a>
+
+  <span class="task-spacer"></span>
+
+  <span class="task-clock">
+    ▣ <time id="task-clock">00:00</time>
+  </span>
+</div>
+
+<!-- START MENU -->
+<nav
+  class="start-menu"
+  id="start-menu"
+  aria-label="Start menu"
+  hidden
+>
+  <div class="start-rail">JOAX 98</div>
+  <div class="start-items">
+    <a href="#home">⌂ &nbsp; Home</a>
+    <a href="#about">▤ &nbsp; About Me</a>
+    <a href="#experiences">▣ &nbsp; Experiences</a>
+    <a href="#certifications">✳ &nbsp; Certifications</a>
+    <a href="#projects">▱ &nbsp; Projects</a>
+    <div class="start-separator"></div>
+    <a href="#contact">✉ &nbsp; Contact</a>
+  </div>
+</nav>
+
+<!-- ================================
+     JAVASCRIPT
+================================ -->
+<script>
+
+document.documentElement.classList.add("js");
+
+const reducedMotion = matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
+
+const $ = selector => document.querySelector(selector);
+const $$ = selector => [...document.querySelectorAll(selector)];
+
+/* ================================
+   BOOT SCREEN
+================================ */
+
+const boot = $("#boot-screen");
+
+window.addEventListener("load", () => {
+  const steps = reducedMotion ? [100] : [25, 50, 75, 100];
+
+  steps.forEach((percent, index) => {
+    setTimeout(() => {
+      $("#boot-progress").style.width = percent + "%";
+      $("#boot-percent").textContent = percent + "%";
+
+      $("#boot-message").textContent =
+        percent === 100
+          ? "SYSTEM READY."
+          : "LOADING COMPONENTS...";
+    }, reducedMotion ? 0 : index * 190);
+  });
+
+  setTimeout(
+    () => boot.classList.add("hidden"),
+    reducedMotion ? 50 : 1000
+  );
+}, { once: true });
+
+/* ================================
+   MOBILE NAVIGATION
+================================ */
+
+const toggle = $("#menu-toggle");
+const nav = $("#nav-links");
+
+const closeNav = () => {
+  nav.classList.remove("open");
+  toggle.setAttribute("aria-expanded", "false");
+};
+
+toggle.addEventListener("click", () => {
+  const open = nav.classList.toggle("open");
+  toggle.setAttribute("aria-expanded", String(open));
+});
+
+$$("#nav-links a").forEach(link => {
+  link.addEventListener("click", closeNav);
+});
+
+document.addEventListener("click", event => {
+  if (
+    !nav.contains(event.target) &&
+    !toggle.contains(event.target)
+  ) {
+    closeNav();
+  }
+});
+
+/* ================================
+   REVEAL AND TYPEWRITER ANIMATIONS
+================================ */
+
+const reveals = $$(".reveal");
+
+if (!reducedMotion && "IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      entry.target.classList.add("visible");
+
+      entry.target.querySelectorAll("h2, h3").forEach(heading => {
+        heading.classList.add("type-on-view");
+      });
+
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: .08 });
+
+  reveals.forEach(item => observer.observe(item));
+} else {
+  reveals.forEach(item => item.classList.add("visible"));
+}
+
+/* ================================
+   READING PROGRESS AND ACTIVE LINKS
+================================ */
+
+const sections = $$("main section[id]");
+
+function updateScroll() {
+  const max =
+    document.documentElement.scrollHeight - innerHeight;
+
+  $("#reading-fill").style.width =
+    (max ? scrollY / max * 100 : 0) + "%";
+
+  const threshold = scrollY + innerHeight * .42;
+  let active = "home";
+
+  sections.forEach(section => {
+    if (section.offsetTop <= threshold) {
+      active = section.id;
+    }
+  });
+
+  $$("#nav-links a").forEach(link => {
+    link.classList.toggle(
+      "active",
+      link.hash === "#" + active
+    );
+  });
+}
+
+addEventListener("scroll", updateScroll, { passive: true });
+addEventListener("resize", updateScroll);
+updateScroll();
+
+$("#year").textContent = new Date().getFullYear();
+
+/* ================================
+   OPTIONAL IMAGES
+================================ */
+
+$$("img[data-optional-image]").forEach(img => {
+  const show = () => {
+    if (img.naturalWidth > 0) {
+      img.classList.add("ready");
+    }
+  };
+
+  img.addEventListener("load", show);
+  img.addEventListener("error", () => {
+    img.classList.remove("ready");
+  });
+
+  if (img.complete) show();
+});
+
+/* ================================
+   SWIPEABLE CAROUSELS
+================================ */
+
+$$("[data-carousel]").forEach(track => {
+  const toolbar = track.previousElementSibling;
+  const buttons = toolbar.querySelector(".carousel-buttons");
+  const prev = toolbar.querySelector(".prev");
+  const next = toolbar.querySelector(".next");
+
+  const step = () =>
+    (track.firstElementChild?.getBoundingClientRect().width ||
+      track.clientWidth) + 18;
+
+  const refresh = () => {
+    const max = Math.max(
+      0,
+      track.scrollWidth - track.clientWidth
+    );
+
+    buttons.hidden = max < 3;
+    prev.disabled = track.scrollLeft < 3;
+    next.disabled = track.scrollLeft >= max - 3;
+  };
+
+  prev.addEventListener("click", () => {
+    track.scrollBy({
+      left: -step(),
+      behavior: reducedMotion ? "auto" : "smooth"
+    });
+  });
+
+  next.addEventListener("click", () => {
+    track.scrollBy({
+      left: step(),
+      behavior: reducedMotion ? "auto" : "smooth"
+    });
+  });
+
+  track.addEventListener("keydown", event => {
+    if (
+      event.key !== "ArrowRight" &&
+      event.key !== "ArrowLeft"
+    ) return;
+
+    event.preventDefault();
+
+    track.scrollBy({
+      left: event.key === "ArrowRight" ? step() : -step(),
+      behavior: "smooth"
+    });
+  });
+
+  track.addEventListener("scroll", refresh, { passive: true });
+  addEventListener("resize", refresh);
+  addEventListener("load", refresh);
+  refresh();
+});
+
+/* ================================
+   WINDOWS 98 START MENU
+================================ */
+
+const startButton = $("#start-button");
+const startMenu = $("#start-menu");
+
+const closeStart = () => {
+  startMenu.hidden = true;
+  startButton.setAttribute("aria-expanded", "false");
+};
+
+startButton.addEventListener("click", () => {
+  startMenu.hidden = !startMenu.hidden;
+
+  startButton.setAttribute(
+    "aria-expanded",
+    String(!startMenu.hidden)
+  );
+});
+
+$$("#start-menu a").forEach(link => {
+  link.addEventListener("click", closeStart);
+});
+
+document.addEventListener("pointerdown", event => {
+  if (
+    !startMenu.contains(event.target) &&
+    !startButton.contains(event.target)
+  ) {
+    closeStart();
+  }
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    closeStart();
+    closeNav();
+  }
+});
+
+/* ================================
+   WINDOWS TASKBAR CLOCK
+================================ */
+
+const setClock = () => {
+  $("#task-clock").textContent =
+    new Date().toLocaleTimeString("en-PH", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true
+    });
+};
+
+setClock();
+setInterval(setClock, 60000);
+
+/* ================================
+   DRAGGABLE ID AND LANYARD PHYSICS
+================================ */
+
+const stage = $("#lanyard-stage");
+const badge = $("#lanyard-badge");
+const ropes = $("#lanyard-ropes");
+
+const pos = { x: 0, y: 0 };
+const vel = { x: 0, y: 0 };
+
+let dragging = false;
+let pointer = null;
+let start = { x: 0, y: 0 };
+let origin = { x: 0, y: 0 };
+
+let springFrame = 0;
+let idleFrame = 0;
+let visible = true;
+
+const clamp = (x, min, max) =>
+  Math.max(min, Math.min(max, x));
+
+const limitX = () =>
+  Math.min(115, stage.clientWidth * .24);
+
+/* LANYARD STRAPS */
+
+function drawStraps() {
+  const w = stage.clientWidth;
+  const h = stage.clientHeight;
+
+  if (!w || !h) return;
+
+  ropes.setAttribute("viewBox", `0 0 ${w} ${h}`);
+
+  const c = w / 2;
+  const ringY = badge.offsetTop + pos.y + 15;
+  const x = c + pos.x;
+  const bend = pos.x * .25;
+
+  const left = `
+    M ${c - 18} 10
+    C ${c - 33} 85,
+    ${x - 25 - bend} ${ringY * .7},
+    ${x - 10} ${ringY}
+  `;
+
+  const right = `
+    M ${c + 18} 10
+    C ${c + 33} 85,
+    ${x + 25 - bend} ${ringY * .7},
+    ${x + 10} ${ringY}
+  `;
+
+  $("#left-edge").setAttribute("d", left);
+  $("#left-fabric").setAttribute("d", left);
+
+  $("#right-edge").setAttribute("d", right);
+  $("#right-fabric").setAttribute("d", right);
+}
+
+/* RENDER ID */
+
+function renderBadge() {
+  badge.style.setProperty("--x", pos.x + "px");
+  badge.style.setProperty("--y", pos.y + "px");
+
+  badge.style.setProperty(
+    "--angle",
+    clamp(8 + pos.x * .12, -18, 25) + "deg"
+  );
+
+  drawStraps();
+}
+
+/* STOP ANIMATIONS */
+
+function stopMotion() {
+  cancelAnimationFrame(springFrame);
+  cancelAnimationFrame(idleFrame);
+
+  springFrame = 0;
+  idleFrame = 0;
+
+  badge.style.setProperty("--float", "0px");
+}
+
+/* IDLE MOVEMENT */
+
+function idle() {
+  if (reducedMotion || dragging || !visible) return;
+
+  cancelAnimationFrame(idleFrame);
+
+  function tick(time) {
+    if (dragging || !visible) return;
+
+    badge.style.setProperty(
+      "--float",
+      Math.sin(time / 1400) * 3 + "px"
+    );
+
+    drawStraps();
+    idleFrame = requestAnimationFrame(tick);
+  }
+
+  idleFrame = requestAnimationFrame(tick);
+}
+
+/* SPRING RETURN */
+
+function settle() {
+  cancelAnimationFrame(springFrame);
+
+  if (reducedMotion) {
+    pos.x = pos.y = vel.x = vel.y = 0;
+    renderBadge();
+    return;
+  }
+
+  function frame() {
+    vel.x = (vel.x - pos.x * .065) * .84;
+    vel.y = (vel.y - pos.y * .070) * .82;
+
+    pos.x += vel.x;
+    pos.y += vel.y;
+
+    renderBadge();
+
+    const motion =
+      Math.abs(pos.x) +
+      Math.abs(pos.y) +
+      Math.abs(vel.x) +
+      Math.abs(vel.y);
+
+    if (motion > .4) {
+      springFrame = requestAnimationFrame(frame);
+    } else {
+      pos.x = pos.y = vel.x = vel.y = 0;
+      springFrame = 0;
+      renderBadge();
+      idle();
+    }
+  }
+
+  springFrame = requestAnimationFrame(frame);
+}
+
+/* START DRAG */
+
+badge.addEventListener("pointerdown", event => {
+  if (
+    event.pointerType === "mouse" &&
+    event.button !== 0
+  ) return;
+
+  event.preventDefault();
+  stopMotion();
+
+  dragging = true;
+  pointer = event.pointerId;
+
+  start = {
+    x: event.clientX,
+    y: event.clientY
+  };
+
+  origin = { ...pos };
+
+  badge.classList.add("dragging");
+  badge.setPointerCapture(pointer);
+});
+
+/* DRAG MOVEMENT */
+
+badge.addEventListener("pointermove", event => {
+  if (!dragging || pointer !== event.pointerId) return;
+
+  const nx = clamp(
+    origin.x + event.clientX - start.x,
+    -limitX(),
+    limitX()
+  );
+
+  const ny = clamp(
+    origin.y + event.clientY - start.y,
+    -75,
+    125
+  );
+
+  vel.x = (nx - pos.x) * .24;
+  vel.y = (ny - pos.y) * .24;
+
+  pos.x = nx;
+  pos.y = ny;
+
+  renderBadge();
+});
+
+/* RELEASE ID */
+
+function release(event) {
+  if (!dragging || pointer !== event.pointerId) return;
+
+  dragging = false;
+  pointer = null;
+
+  badge.classList.remove("dragging");
+
+  if (badge.hasPointerCapture(event.pointerId)) {
+    badge.releasePointerCapture(event.pointerId);
+  }
+
+  settle();
+}
+
+badge.addEventListener("pointerup", release);
+badge.addEventListener("pointercancel", release);
+
+badge.addEventListener("lostpointercapture", () => {
+  if (!dragging) return;
+
+  dragging = false;
+  pointer = null;
+
+  badge.classList.remove("dragging");
+  settle();
+});
+
+/* KEYBOARD CONTROLS */
+
+badge.addEventListener("keydown", event => {
+  const directions = {
+    ArrowLeft: [-16, 0],
+    ArrowRight: [16, 0],
+    ArrowUp: [0, -16],
+    ArrowDown: [0, 16]
+  };
+
+  if (event.key === "Escape") {
+    settle();
+    return;
+  }
+
+  if (!directions[event.key]) return;
+
+  event.preventDefault();
+  stopMotion();
+
+  const [dx, dy] = directions[event.key];
+
+  pos.x = clamp(
+    pos.x + dx,
+    -limitX(),
+    limitX()
+  );
+
+  pos.y = clamp(
+    pos.y + dy,
+    -75,
+    125
+  );
+
+  renderBadge();
+});
+
+badge.addEventListener("keyup", event => {
+  if (event.key.startsWith("Arrow")) {
+    settle();
+  }
+});
+
+/* PAUSE WHEN OFFSCREEN */
+
+if ("IntersectionObserver" in window) {
+  new IntersectionObserver(entries => {
+    visible = entries[0].isIntersecting;
+
+    if (!visible) {
+      cancelAnimationFrame(idleFrame);
+      idleFrame = 0;
+    } else if (!dragging && !springFrame) {
+      idle();
+    }
+  }).observe(stage);
+}
+
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    cancelAnimationFrame(idleFrame);
+    idleFrame = 0;
+  } else if (visible && !dragging) {
+    idle();
+  }
+});
+
+addEventListener("resize", renderBadge);
+
+renderBadge();
+idle();
+
+</script>
+</body>
+</html>
+
+
+
+
